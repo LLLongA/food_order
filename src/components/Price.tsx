@@ -21,12 +21,14 @@ const Price = ({ price, id, options }: Props) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">${total.toFixed(2)}</h2>
+      <h2 id={`price-${id}`} className="text-2xl font-bold">
+        ${total.toFixed(2)}
+      </h2>
       {/* OPTIONS CONTAINER */}
       <div className="flex gap-4">
         {options?.map((option, index) => (
           <button
-            key={option.title}
+            key={`${option.title}-${id}`} // 使用 id 来确保 key 唯一
             className="min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md"
             style={{
               background: selected === index ? "rgb(248 113 113)" : "white",
@@ -58,7 +60,10 @@ const Price = ({ price, id, options }: Props) => {
           </div>
         </div>
         {/* CART BUTTON */}
-        <button className="uppercase w-56 bg-red-500 text-white p-3 ring-1 ring-red-500">
+        <button
+          className="uppercase w-56 bg-red-500 text-white p-3 ring-1 ring-red-500"
+          id={`cart-button-${id}`} // 使用 id 来标识按钮
+        >
           Add to Cart
         </button>
       </div>
